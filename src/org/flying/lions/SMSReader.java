@@ -41,7 +41,17 @@ public class SMSReader extends Plugin {
 
     //Read messages from inbox/or sent box.
     private JSONObject readSMS(String folder) throws JSONException {
-        JSONObject data = new JSONObject();
+        
+    	/*	@param data 
+    			JSON object sent to javascript
+    		@param smsList
+    			JSON array that is in data
+    			
+    			makes it easier to read data in javascript => data.messages[0].id
+    		
+    		*/
+    	
+    	JSONObject data = new JSONObject();
         Uri uriSMSURI = Uri.parse("");
         if(folder.equals("inbox")){
             uriSMSURI = Uri.parse("content://sms/inbox");
@@ -50,12 +60,7 @@ public class SMSReader extends Plugin {
         Cursor cur = getContentResolver().query(uriSMSURI, null, null, null,null);
         JSONArray smsList = new JSONArray();
         data.put("messages", smsList);
-        //while (cur.moveToNext()) {
-        
-        /*
-         * ABSA: CHEQ3291, Pur, 26/04/12 SETTLEMENT/C -POS PURCHASE, 000544654654844 RIDGE, R99.99, Balance R900.21
-         */
-        //for(int cnt = 0;cnt<5;cnt++)
+
         while (cur.moveToNext())
         {
         	
@@ -96,6 +101,7 @@ public class SMSReader extends Plugin {
             
             smsList.put(sms);
         }
+
         return data;
     }
 
