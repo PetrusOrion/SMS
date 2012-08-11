@@ -8,7 +8,11 @@ public class SMSReaderActivity extends DroidGap {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Splash screen
+        super.setIntegerProperty("splashscreen", R.drawable.splash);
         setContentView(R.layout.main);
-        super.loadUrl("file:///android_asset/www/index.html");
+        
+        //@param 2nd parameter is time splash screen is shown
+        super.loadUrl("file:///android_asset/www/index.html",2000);
     }
 }
