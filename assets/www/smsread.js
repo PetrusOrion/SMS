@@ -12,7 +12,7 @@ SMSReader.prototype.getInbox = function(params, success, fail) {
 
 PhoneGap.addConstructor(function() {
 	PhoneGap.addPlugin("SMSReader", new SMSReader());
-	PluginManager.addService("SMSReader", "org.flying.lions.SMSReader");
+	//PluginManager.addService("SMSReader", "org.flying.lions.SMSReader");
 });
 
 function getSMSData(data){

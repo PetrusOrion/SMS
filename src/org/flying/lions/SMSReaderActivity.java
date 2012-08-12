@@ -2,6 +2,7 @@ package org.flying.lions;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
+import org.flying.lions.R;
 
 public class SMSReaderActivity extends DroidGap {
     /** Called when the activity is first created. */

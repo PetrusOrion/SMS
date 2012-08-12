@@ -70,7 +70,7 @@ function executeStartupEvents(){
 		{
 			   document.addEventListener("resume", onResume, false);
 			   document.addEventListener("pause", onPause, false);
-			   document.addEventListener("backbutton", onBack, false);
+			   //document.addEventListener("backbutton", backKeyDown, false);
 			
 			   var btnList = document.getElementById("listsms");
 			   
@@ -95,11 +95,13 @@ function executeStartupEvents(){
 				
 				function onPause() {
 				    isPhoneGapReady = false;
-				    //console.log("PAAAAAAAAAAAAAAAAAAUUUUSSSSSSSSSSSSEEEE");
+				    console.log("PAAAAAAAAAAAAAAAAAAUUUUSSSSSSSSSSSSEEEE");
 				} 		
 				
-				function onBack() {
+				function backKeyDown(e) {
 				    isPhoneGapReady = false;
+				    //e.preventDefault();
+				    //onPause();
 				    //console.log("BAAAAAAAAAAAAACCCCCCCCCCCCKKKKKKKKKKKKK");
 				    //navigator.app.backHistory();
 				    //window.history.back();
