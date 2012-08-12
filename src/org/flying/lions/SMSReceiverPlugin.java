@@ -77,7 +77,7 @@ public class SMSReceiverPlugin extends Plugin {
 	 */
 	public static void sendMessage(final SmsMessage msg)
 	{
-
+			Log.d(TAG, "sendMessage Called");
 			// build JSON message
 			JSONObject json = new JSONObject();
 			try
