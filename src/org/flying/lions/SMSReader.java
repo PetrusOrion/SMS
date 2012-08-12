@@ -101,7 +101,18 @@ public class SMSReader extends Plugin {
             
             smsList.put(sms);
         }
-
+        
+        /*
+         * Using the JSON object data sent to decoder //Use without the Log.d obviously
+         * 
+         * Log.d(TAG, Integer.toString(data.getJSONArray("messages").length()));
+         * 		How many smses is in object
+         * 
+         * Log.d(TAG, data.getJSONArray("messages").getJSONObject(0).get("body").toString());
+         * 		String value of "body" value of the first SMS - index 0 
+        */
+        
+        
         return data;
     }
 
