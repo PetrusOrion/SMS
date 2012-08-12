@@ -107,7 +107,7 @@ public class SMSReader extends Plugin {
 
    
     private ContentResolver getContentResolver(){
-       return this.ctx.getContentResolver();
+       return this.ctx.getActivity().getContentResolver();
     }
 
 
