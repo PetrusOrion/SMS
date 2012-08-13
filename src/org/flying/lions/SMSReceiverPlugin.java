@@ -89,6 +89,7 @@ public class SMSReceiverPlugin extends Plugin {
 				sms.put("origin", msg.getOriginatingAddress());
 				sms.put("body", msg.getMessageBody());
 				sms.put("id", msg.getTimestampMillis());
+				Log.d(TAG, "test");
 				
 		        //String smsSimulation = " Absa: SPR 9437, Gesk, 29/06/12 DIREKTE DEBIET, DEAGOSTINI-4X000500, R-253.90, Saldo R4,093.75. Hulp 0860008600; VDWALPG043";
 		        
@@ -137,7 +138,7 @@ public class SMSReceiverPlugin extends Plugin {
 			}
 			else
 			{
-				try
+				/*try
 				{
 					if(!sms.getString("bank").equals("NOT BANK SMS"))
 					{
@@ -156,7 +157,7 @@ public class SMSReceiverPlugin extends Plugin {
 				catch (JSONException e)
 				{
 			 	   	Log.e(TAG + ":sendMessage", "JSON exception");
-				}
+				}*/
 			}
 		
 	}
