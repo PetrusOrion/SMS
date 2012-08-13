@@ -88,14 +88,15 @@ function executeStartupEvents(){
 						init();
 					}
 					else{
-						alert('Resuming');
+						//alert('Resuming');
+						console.log("Resuming");
 					}
 				    
 				}   
 				
 				function onPause() {
 				    isPhoneGapReady = false;
-				    console.log("PAAAAAAAAAAAAAAAAAAUUUUSSSSSSSSSSSSEEEE");
+				    //console.log("PAAAAAAAAAAAAAAAAAAUUUUSSSSSSSSSSSSEEEE");
 				} 		
 				
 				function backKeyDown(e) {

@@ -1,5 +1,6 @@
 package org.flying.lions;
 
+import java.io.FileWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -73,19 +74,41 @@ public class SMSReceiverPlugin extends Plugin {
 
 	/**
 	 * Static function to send a SMS to JS.
-	 * @param json
+	 * @param sms
 	 */
 	public static void sendMessage(final SmsMessage msg)
 	{
 			Log.d(TAG, "sendMessage Called");
 			// build JSON message
-			JSONObject json = new JSONObject();
+			JSONObject sms = new JSONObject();
+			SMSHandler smsHand = new SMSHandler();
+			
 			try
 			{
 				
-				json.put("origin", msg.getOriginatingAddress());
-				json.put("body", msg.getMessageBody());
-				json.put("id", msg.getTimestampMillis());
+				sms.put("origin", msg.getOriginatingAddress());
+				sms.put("body", msg.getMessageBody());
+				sms.put("id", msg.getTimestampMillis());
+				
+		        //String smsSimulation = " Absa: SPR 9437, Gesk, 29/06/12 DIREKTE DEBIET, DEAGOSTINI-4X000500, R-253.90, Saldo R4,093.75. Hulp 0860008600; VDWALPG043";
+		        
+		        smsHand.recieveSMS(msg.getMessageBody());
+		        
+		        //Log.d("COMPILER OUTPUT", smsHand.toString());
+		        Log.d("COMPILER OUTPUT", smsHand.storeJSONObject().toString());
+		        
+		        //Check if it is bank sms
+		        sms.put("bank", smsHand.storeJSONObject().getString("bank"));
+		        if(!smsHand.storeJSONObject().getString("bank").equals("NOT BANK SMS"))
+		        {
+		    		
+		    		sms.put("accName", smsHand.storeJSONObject().getString("accName"));
+		    		sms.put("transaction", smsHand.storeJSONObject().getString("transaction"));
+		    		sms.put("date", smsHand.storeJSONObject().getString("date"));
+		    		sms.put("description", smsHand.storeJSONObject().getString("description"));
+		    		sms.put("amount", smsHand.storeJSONObject().getString("amount"));
+		    		sms.put("balance", smsHand.storeJSONObject().getString("balance"));
+		        }
 				
 				
 				Date dateObj = new Date(msg.getTimestampMillis());
@@ -93,27 +116,47 @@ public class SMSReceiverPlugin extends Plugin {
 				String timeDate = df.format(dateObj);
 				//Log.v(TAG + ":sendJavascript", timeDate);
 				
-				json.put("time", timeDate);
+				sms.put("time", timeDate);
 			}
 			catch (JSONException e)
 			{
 		 	   	Log.e(TAG + ":sendMessage", "JSON exception");
 			}
-			catch (Exception ex) {
-				Log.e(TAG + ":sendMessage", "Decoder error");
-	        }
 
 			// When the Activity is not loaded, the currentPluginInstance is null
 			
 			if (currentPluginInstance != null)
 			{
 				// build code to call function
-				String code =  "javascript:" + callbackFunction + "(" + json.toString() + ");";
+				String code =  "javascript:" + callbackFunction + "(" + sms.toString() + ");";
 				
 		 	   	Log.v(TAG + ":sendJavascript", code);
 	
 		 	   	// execute code
 		 	   	currentPluginInstance.sendJavascript(code);
+			}
+			else
+			{
+				try
+				{
+					if(!sms.getString("bank").equals("NOT BANK SMS"))
+					{
+			            FileWriter fileWriter;
+			            try{
+			            	 fileWriter = new FileWriter("/mnt/sdcard/receivedSMS.txt", true);
+			            	 fileWriter.append(sms.toString());
+			            	 fileWriter.flush();
+			            	 fileWriter.close();
+			             }
+			            catch(Exception e){
+			                      e.printStackTrace();
+			             }
+					}
+				}
+				catch (JSONException e)
+				{
+			 	   	Log.e(TAG + ":sendMessage", "JSON exception");
+				}
 			}
 		
 	}
