@@ -135,10 +135,11 @@ public class SMSReceiverPlugin extends Plugin {
 	
 		 	   	// execute code
 		 	   	currentPluginInstance.sendJavascript(code);
+		 	   	currentPluginInstance.sendJavascript("javascript:notificationCallback()");
 			}
 			else
 			{
-				/*try
+				try
 				{
 					if(!sms.getString("bank").equals("NOT BANK SMS"))
 					{
@@ -157,7 +158,7 @@ public class SMSReceiverPlugin extends Plugin {
 				catch (JSONException e)
 				{
 			 	   	Log.e(TAG + ":sendMessage", "JSON exception");
-				}*/
+				}
 			}
 		
 	}

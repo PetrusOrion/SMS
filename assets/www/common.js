@@ -112,9 +112,11 @@ function executeStartupEvents(){
 			   btnList.onclick = function() {
 				   window.plugins.SMSReader.getInbox("",
 					function(data){
+					      
 					      var text = getSMSData(data);
 					      console.log(text);
 					      document.getElementById("inbox").innerHTML = text;
+					      
 					      
 					},
 					function(e){
@@ -161,6 +163,14 @@ function executeFirstRunEvents(){
 			firstRun = false;
 			
 	}
+	
+}
+
+function notificationCallback(){
+	if(isPhoneGapReady == false){
+		window.plugins.StatusBarNotification.notify("Decoded SMS", "New Decoded msg");
+	}
+	
 	
 }
 

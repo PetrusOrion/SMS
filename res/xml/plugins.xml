@@ -36,5 +36,6 @@
     <plugin name="Battery" value="org.apache.cordova.BatteryListener"/>
     <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
     <plugin name="SMSReader" value="org.flying.lions.SMSReader" />
-    <plugin name="SMSReceiverPlugin" value="org.flying.lions.SMSReceiverPlugin"/>    
+    <plugin name="SMSReceiverPlugin" value="org.flying.lions.SMSReceiverPlugin"/>
+    <plugin name="StatusBarNotification" value="org.flying.lions.StatusBarNotification"/>    
 </plugins>
