@@ -38,19 +38,6 @@ public class SMSHandler {
         //System.out.println("\n\n" + this);
     }
 
-    private int rulesSize(String inMessage){
-        int result = 0;
-
-        Scanner lineScanner = new Scanner(inMessage);
-        lineScanner.useDelimiter(" ");
-
-        while (lineScanner.hasNext()) {
-            result += 1;
-            lineScanner.next();
-        }
-        return result;
-    }
-
     private void parseSMS(int where) {
         realValue[where] = ruleList[where].doRule(smsString, currentLocation);
     }
