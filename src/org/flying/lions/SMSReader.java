@@ -61,6 +61,7 @@ public class SMSReader extends Plugin {
         JSONArray smsList = new JSONArray();
         data.put("messages", smsList);
 
+        
         while (cur.moveToNext())
         {
         	
@@ -101,6 +102,7 @@ public class SMSReader extends Plugin {
             
             smsList.put(sms);
         }
+        
         
         /*
          * Using the JSON object data sent to decoder //Use without the Log.d obviously

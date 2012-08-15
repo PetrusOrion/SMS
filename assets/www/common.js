@@ -40,7 +40,7 @@ function onDeviceReady()
 	executeStartupEvents();
 	
 	//Any events that needs to run if app is opened for first time
-	executeFirstRunEvents();
+	//executeFirstRunEvents();
 	
 	
 	
@@ -72,8 +72,7 @@ function executeStartupEvents(){
 			   document.addEventListener("pause", onPause, false);
 			   //document.addEventListener("backbutton", backKeyDown, false);
 			
-			   var btnList = document.getElementById("listsms");
-			   
+			     
 			   	window.plugins.SMSReceiverPlugin.register("smscallback", function()
 					{
 					    console.log("Registration ok");
@@ -109,7 +108,7 @@ function executeStartupEvents(){
 				} 				
 				
 			   
-			   btnList.onclick = function() {
+			   /*btnList.onclick = function() {
 				   window.plugins.SMSReader.getInbox("",
 					function(data){
 					      
@@ -126,7 +125,7 @@ function executeStartupEvents(){
 			   
 			  
 			   
-			   btnList.disabled=false;	
+			   btnList.disabled=false;	*/
 			
 			
 		}
@@ -174,9 +173,9 @@ function notificationCallback(){
 	
 }
 
-window.onbeforeunload  =  function(e)
+/*window.onbeforeunload  =  function(e)
 {
 	window.plugins.SMSReceiverPlugin.unregister(null, null); 
-}
+}*/
 
 window.onload = init;

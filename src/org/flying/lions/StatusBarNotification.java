@@ -76,7 +76,6 @@ public class StatusBarNotification extends Plugin {
 	
 		Notification notification = new Notification(icon, contentTitle, when);
 		notification.flags = Notification.FLAG_AUTO_CANCEL;
-		//notification.flags |= Notification.FLAG_NO_CLEAR; //Notification cannot be clearned by user
   	
 		Intent notificationIntent = new Intent(ctx.getActivity(), ctx.getClass());
 		PendingIntent contentIntent = PendingIntent.getActivity(ctx.getActivity(), 0, notificationIntent, 0);
